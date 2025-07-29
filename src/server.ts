@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import path from "path";
 import cors from "cors";
 import dotenv from "dotenv";
 import { ConnectionToDB } from "./configs/db";
@@ -18,7 +19,7 @@ app.use(
     origin: "*",
   })
 );
-app.use("/uploads", express.static("src/uploads"));
+app.use("/images", express.static(path.join(__dirname, "./uploads")));
 
 app.use("/api/auth", AuthRouter);
 app.use("/api/user", UserRouter);

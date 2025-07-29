@@ -4,9 +4,11 @@ import TicketModel from "./ticket.model";
 const CreateTikcet = async (req: Request, res: Response) => {
   try {
     const answers = req.body["answers"].map((i: any) => i);
-
+    const imgUrl = req.file
+      ? `/images/${req.file.filename}`
+      : "/images/default.png"; // agar rasm kelmasa default
     const body = {
-      imgUrl: `/uploads/${req.file?.filename}`,
+      imgUrl: imgUrl,
       questions: {
         lotin: req.body["questions"]["lotin"],
         rus: req.body["questions"]["rus"],
